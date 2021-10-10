@@ -55,6 +55,10 @@ def process_files(words):
 
 
 def create_document_vectors():
+    """
+    This function creates the document vectors, and saves them to a directory.
+    :return: the document vectors
+    """
     if Path(TF_IDF_OUTPUT_PATH).exists() and Path(TF_IDF_OUTPUT_PATH).is_dir():
         shutil.rmtree(Path(TF_IDF_OUTPUT_PATH))
     Path(TF_IDF_OUTPUT_PATH).mkdir(parents=True, exist_ok=True)
@@ -79,6 +83,11 @@ def create_document_vectors():
 
 
 def get_cosine_similarity(document_vectors):
+    """
+    This function creates a cosine similarity matrix for a set of document vectors, and exports it to a path.
+    :param document_vectors: the document vectors to get the cosine similarity for.
+    :return: the cosine similarity matrix.
+    """
     if Path(COSINE_SIMILARITY_PATH).exists() and Path(COSINE_SIMILARITY_PATH).is_dir():
         shutil.rmtree(Path(COSINE_SIMILARITY_PATH))
     Path(COSINE_SIMILARITY_PATH).mkdir(parents=True, exist_ok=True)
@@ -89,6 +98,11 @@ def get_cosine_similarity(document_vectors):
 
 
 def plot_dendrogram(model):
+    """
+    This function plots the dendrogram and saves it to a file.
+    :param model: the model to cluster and plot.
+    :return:
+    """
     if Path(DENDROGRAM_PATH).exists() and Path(DENDROGRAM_PATH).is_dir():
         shutil.rmtree(Path(DENDROGRAM_PATH))
     Path(DENDROGRAM_PATH).mkdir(parents=True, exist_ok=True)
@@ -96,7 +110,6 @@ def plot_dendrogram(model):
     dendrogram(z)
     plt.gcf()
     plt.savefig(Path(DENDROGRAM_PATH + "figure.png"))
-    plt.show()
 
 
 if __name__ == "__main__":
